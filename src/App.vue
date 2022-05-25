@@ -2,7 +2,7 @@
 import Home from "./pages/Homepage.vue";
 import About from "./pages/About.vue";
 import NotFound from "./pages/NotFound.vue";
-import Header from "./components/header/Header.vue";
+import Header from "./components/Header.vue";
 
 // Implement a basic router
 const routes = {
