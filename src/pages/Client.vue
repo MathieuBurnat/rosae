@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="divider"></div>
-    <div class="grid h-20 card rounded-box place-items-center">
+    <div class="grid card rounded-box place-items-center">
       <Register v-if="displayRegister" />
       <Retrieve v-if="displayRetrieve" />
     </div>
