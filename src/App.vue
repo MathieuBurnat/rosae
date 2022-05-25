@@ -6,8 +6,8 @@ import Header from "./components/Header.vue";
 
 // Implement a basic router
 const routes = {
-  "/": Home,
   "/about": About,
+  "/": Home,
 };
 
 export default {

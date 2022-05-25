@@ -1,12 +1,10 @@
 <template>
   <div>
-    <h1 class="text-3xl font-bold underline">Hello there !</h1>
+    <h1 class="text-3xl font-bold underline"> Homepage ! </h1>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
-
 export default {
   components: {},
   setup() {},
