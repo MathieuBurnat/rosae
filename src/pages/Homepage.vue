@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1> Homepage </h1>
+    <h1 class="text-3xl font-bold underline">Hello there !</h1>
   </div>
 </template>
 
@@ -8,9 +8,7 @@
 import { ref } from "vue";
 
 export default {
-  components: {
-  },
-  setup() {
-  },
+  components: {},
+  setup() {},
 };
 </script>
