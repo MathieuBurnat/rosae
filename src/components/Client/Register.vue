@@ -41,7 +41,9 @@
 
     <button class="btn btn-success" @click="register">Save</button>
 
-    <p>{{ error }}</p>
+    <div v-if="success === false">
+      <ErrorDisplayer :errors="errors" />
+    </div>
 
     <div v-if="success === true">
       <Message :message="message" />
