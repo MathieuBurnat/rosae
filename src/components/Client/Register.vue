@@ -60,27 +60,20 @@ export default {
   },
   methods: {
     async register() {
-      const client = {
-        email: this.email,
-        firstname: this.firstname,
-        lastname: this.lastname,
-      };
-
-      console.log("save the client.. ");
-      console.log(client);
-
-      const result = await this.axios({
+      await this.axios({
         method: "post",
         url: config.api.path + "clients/create",
-        headers: {},
         data: {
           email: this.email,
           firstname: this.firstname,
           lastname: this.lastname,
         },
-      });
+      }).then((response) => (console.log(response)))
+        .catch((error) => {
+          this.error = error.response.data.message;
+        });
 
-      console.log(result);
+      console.log(this.error);
     },
   },
 };
