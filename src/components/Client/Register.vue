@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="w-3/4">
     <div class="mb-4">
       <div class="mb-4">
         <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
@@ -39,7 +39,9 @@
       />
     </div>
 
-    <button class="btn btn-success" @click="register">Save</button>
+    <div class="flex justify-center">
+      <button class="btn btn-success" @click="register">Save</button>
+    </div>
 
     <div v-if="success === false">
       <ErrorDisplayer :errors="errors" />
@@ -69,7 +71,7 @@ export default {
   },
   components: {
     ErrorDisplayer,
-    Message
+    Message,
   },
   methods: {
     async register() {
@@ -93,7 +95,7 @@ export default {
         .catch((error) => {
           this.success = false;
           console.log(error.response.data.message);
-          
+
           this.errors = error.response.data.message;
         });
 
