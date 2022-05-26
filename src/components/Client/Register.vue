@@ -92,6 +92,8 @@ export default {
         })
         .catch((error) => {
           this.success = false;
+          console.log(error.response.data.message);
+          
           this.errors = error.response.data.message;
         });
 
