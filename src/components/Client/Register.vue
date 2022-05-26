@@ -59,16 +59,28 @@ export default {
     };
   },
   methods: {
-    register() {
-      const user = ref({
+    async register() {
+      const client = {
         email: this.email,
         firstname: this.firstname,
         lastname: this.lastname,
+      };
+
+      console.log("save the client.. ");
+      console.log(client);
+
+      const result = await this.axios({
+        method: "post",
+        url: config.api.path + "clients/create",
+        headers: {},
+        data: {
+          email: this.email,
+          firstname: this.firstname,
+          lastname: this.lastname,
+        },
       });
-      console.log("Test : Get clients with Axios");
-      this.axios.get(config.api.path + "clients").then((response) => {
-        console.log(response.data);
-      });
+
+      console.log(result);
     },
   },
 };
