@@ -42,12 +42,17 @@
     <button class="btn btn-success" @click="register">Save</button>
 
     <p>{{ error }}</p>
+
+    <div v-if="success === true">
+      <Message :message="message" />
+    </div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
 import config from "../../config.js";
+import ErrorDisplayer from "../ErrorDisplayer.vue";
+import Message from "../Message.vue";
 
 export default {
   data() {
@@ -55,8 +60,14 @@ export default {
       email: "",
       firstname: "",
       lastname: "",
-      error: "",
+      errors: "",
+      success: "",
+      message: "",
     };
+  },
+  components: {
+    ErrorDisplayer,
+    Message
   },
   methods: {
     async register() {
@@ -68,12 +79,21 @@ export default {
           firstname: this.firstname,
           lastname: this.lastname,
         },
-      }).then((response) => (console.log(response)))
+      })
+        .then((response) => {
+          this.success = true;
+
+          this.message = {
+            type: "alert-success",
+            content: "The client has been created",
+          };
+        })
         .catch((error) => {
-          this.error = error.response.data.message;
+          this.success = false;
+          this.errors = error.response.data.message;
         });
 
-      console.log(this.error);
+      console.log(this.errors);
     },
   },
 };
