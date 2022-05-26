@@ -40,24 +40,35 @@
     </div>
 
     <button class="btn btn-success" @click="register">Save</button>
+
+    <p>{{ error }}</p>
   </div>
 </template>
 
 <script>
+import { ref } from "vue";
+import config from "../../config.js";
+
 export default {
   data() {
     return {
       email: "",
       firstname: "",
       lastname: "",
+      error: "",
     };
   },
   methods: {
     register() {
-      console.log("- Register the clien -");
-      console.log(this.email);
-      console.log(this.firstname);
-      console.log(this.lastname);
+      const user = ref({
+        email: this.email,
+        firstname: this.firstname,
+        lastname: this.lastname,
+      });
+      console.log("Test : Get clients with Axios");
+      this.axios.get(config.api.path + "clients").then((response) => {
+        console.log(response.data);
+      });
     },
   },
 };
