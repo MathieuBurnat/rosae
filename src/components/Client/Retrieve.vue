@@ -51,9 +51,10 @@ import ErrorManager from "../errorManager.vue";
 export default {
   data() {
     return {
+      errors: "",
+      success: "",
       qrcode: "",
       ownerId: "",
-      errors: "",
     };
   },
   components: {
@@ -87,8 +88,6 @@ export default {
           this.success = false;
           this.errors = this.$refs.errorManager.friendlyMessage(error);
         });
-
-      console.log(this.errors);
     },
   },
 };
