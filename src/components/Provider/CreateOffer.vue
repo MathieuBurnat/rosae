@@ -10,11 +10,11 @@
         class="max-w-xs border collapse collapse-plus border-base-300 bg-base-100 rounded-box"
       >
         <div class="text-xl font-medium collapse-title">
-          How to create an commercial offer ?
+          What's a commercial offer ?
         </div>
         <div class="collapse-content">
-          <p> Create an commercial offer will inform every client connected to a product. It will also be saved on the blockchain. </p>
-          <p> If you change the event type, you could see that the action changes, it's because the value could sometimes be an pourcentage or an discount coupon </p>
+          <p> Create a commercial offer will inform every client connected to a product. It will also be saved on the blockchain. </p>
+          <p> If you change the event type, you could see that the action changes, it's because the value could sometimes be an pourcentage or a price like a discount coupon </p>
         </div>
       </div>
     </div>
