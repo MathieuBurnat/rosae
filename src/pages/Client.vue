@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="grid h-auto card rounded-box place-items-center">
-      <h1>Client section {{ count }}</h1>
+      <h1>Client section </h1>
       <div>
         <button class="w-40 m-1 btn" @click="openRegister">Register</button>
 
