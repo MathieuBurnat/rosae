@@ -35,10 +35,10 @@
             <a href="#/client">Client</a>
           </li>
           <li class="text-xl text-gray-800 hover:text-blue-400">
-            <a href="#/seller">Seller</a>
+            <a href="#/provider">Provider</a>
           </li>
           <li class="text-xl text-gray-800 hover:text-blue-400">
-            <a href="#/provider">Provider</a>
+            <a href="#/seller">Seller</a>
           </li>
           <li class="text-xl text-gray-800 hover:text-blue-400">
             <a href="#/data">Data View</a>
