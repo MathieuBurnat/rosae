@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1> Provider section </h1>
+    <h1> Seller section </h1>
   </div>
 </template>
 
