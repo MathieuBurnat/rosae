@@ -4,8 +4,8 @@ import About from "./pages/About.vue";
 import NotFound from "./pages/NotFound.vue";
 import Header from "./components/Header.vue";
 import Client from "./pages/Client.vue";
-import Provider from "./pages/Provider.vue";
-import Seller from "./pages/Seller.vue";
+import Provider from "./pages/Seller.vue";
+import Seller from "./pages/Provider.vue";
 
 // Implement a basic router
 const routes = {
