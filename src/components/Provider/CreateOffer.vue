@@ -35,7 +35,7 @@
       </label>
 
       <select
-        class="w-full border-stone-300 select select-bordered"
+        class="w-full border-base-200 select select-bordered"
         v-model="eventTypeContent"
       >
         <option disabled selected>Event type</option>
@@ -65,7 +65,9 @@
             placeholder="action"
             v-model="action"
           />
-          <span v-if="eventTypeContent=='COMMERCIAL_WARRANTY_EXTENDED'">%</span>
+          <span v-if="eventTypeContent == 'COMMERCIAL_WARRANTY_EXTENDED'"
+            >%</span
+          >
           <span v-else>CHF</span>
         </label>
       </div>
