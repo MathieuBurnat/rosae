@@ -100,8 +100,6 @@ export default {
           this.success = false;
           this.errors = this.$refs.errorManager.friendlyMessage(error)
         });
-
-      console.log(this.errors);
     },
   },
 };
