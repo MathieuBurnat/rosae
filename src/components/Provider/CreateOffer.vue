@@ -61,6 +61,9 @@
         <option value="COMMERCIAL_WARRANTY_EXTENDED">
           Extend the warranty
         </option>
+        <option value="COMMERCIAL_DISCOUNT_COUPON">
+          Give a discount coupon
+        </option>
       </select>
     </div>
 
