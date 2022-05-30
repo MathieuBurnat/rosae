@@ -1,49 +1,49 @@
 <template>
   <div class="w-3/4">
-      <div class="mb-4">
-        <label class="block mb-2 text-sm font-bold text-gray-700" for="content">
-          content
-        </label>
-        <input
-          class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-          id="content"
-          type="text"
-          placeholder="content"
-          v-model="content"
-        />
-      </div>
+    <div class="mb-4">
+      <label class="block mb-2 text-sm font-bold text-gray-700" for="content">
+        content
+      </label>
+      <input
+        class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+        id="content"
+        type="text"
+        placeholder="content"
+        v-model="content"
+      />
+    </div>
 
-      <div class="mb-4">
-        <label
-          class="block mb-2 text-sm font-bold text-gray-700"
-          for="productId"
-        >
-          productId
-        </label>
-        <input
-          class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-          id="productId"
-          type="text"
-          placeholder="productId"
-          v-model="productId"
-        />
-      </div>
+    <div class="mb-4">
+      <label class="block mb-2 text-sm font-bold text-gray-700" for="productId">
+        productId
+      </label>
+      <input
+        class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+        id="productId"
+        type="text"
+        placeholder="productId"
+        v-model="productId"
+      />
+    </div>
 
-      <div class="mb-4">
-        <label
-          class="block mb-2 text-sm font-bold text-gray-700"
-          for="eventTypeContent"
-        >
-          eventTypeContent
-        </label>
-        <input
-          class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-          id="eventTypeContent"
-          type="text"
-          placeholder="eventTypeContent"
-          v-model="eventTypeContent"
-        />
-      </div>
+    <div class="mb-4">
+      <label
+        class="block mb-2 text-sm font-bold text-gray-700"
+        for="eventTypeContent"
+      >
+        What's the type of the commercial offer ?
+      </label>
+
+      <select
+        class="w-full border-stone-300 select select-bordered"
+        v-model="eventTypeContent"
+      >
+        <option disabled selected>Event type</option>
+        <option value="COMMERCIAL_WARRANTY_EXTENDED">
+          Extend the warranty
+        </option>
+      </select>
+    </div>
 
     <div class="mb-4">
       <label class="block mb-2 text-sm font-bold text-gray-700" for="date">
@@ -53,18 +53,23 @@
     </div>
 
     <div class="mb-4">
-      <label class="block mb-2 text-sm font-bold text-gray-700" for="action">
-        action
-      </label>
-      <input
-        class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-        id="action"
-        type="text"
-        placeholder="action"
-        v-model="action"
-      />
+      <div class="form-control">
+        <label class="block mb-2 text-sm font-bold text-gray-700" for="action">
+          action
+        </label>
+        <label class="input-group">
+          <input
+            class="w-full px-3 py-2 leading-tight text-gray-700 border rounded"
+            id="action"
+            type="number"
+            placeholder="action"
+            v-model="action"
+          />
+          <span v-if="eventTypeContent=='COMMERCIAL_WARRANTY_EXTENDED'">%</span>
+          <span v-else>CHF</span>
+        </label>
+      </div>
     </div>
-
 
     <div class="flex justify-center">
       <button class="btn btn-success" @click="save">Save</button>
@@ -97,9 +102,9 @@ export default {
       message: "",
       content: "",
       productId: "",
-      eventTypeContent: "",
+      eventTypeContent: "Event type",
       action: "",
-      shall_expire_on: "",
+      date: "",
     };
   },
   components: {
