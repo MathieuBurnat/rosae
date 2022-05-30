@@ -25,8 +25,12 @@
             checked
             v-model="published"
           />
-          <span class="label-text" v-if="published">The product will be created and published </span>
-          <span class="label-text" v-if="!published">The product will be created but not published </span>
+          <span class="label-text" v-if="published"
+            >The product will be created and published
+          </span>
+          <span class="label-text" v-if="!published"
+            >The product will be created but not published
+          </span>
         </label>
       </div>
     </div>
@@ -34,17 +38,11 @@
     <div class="mb-4">
       <label
         class="block mb-2 text-sm font-bold text-gray-700"
-        for="warrantyExpiresOn"
+        for="date"
       >
         When the warranty expires ?
       </label>
-      <input
-        class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-        id="warrantyExpiresOn"
-        type="text"
-        placeholder="warrantyExpiresOn"
-        v-model="warrantyExpiresOn"
-      />
+      <Datepicker v-model="date"></Datepicker>
     </div>
 
     <div class="mb-4">
@@ -80,6 +78,8 @@ import config from "../../config.js";
 import ErrorDisplayer from "../ErrorDisplayer.vue";
 import Message from "../Message.vue";
 import ErrorManager from "../errorManager.vue";
+import Datepicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
 
 export default {
   data() {
@@ -89,24 +89,27 @@ export default {
       message: "",
       name: "",
       published: true,
-      warrantyExpiresOn: "",
       price: 15,
+      date: null
     };
   },
   components: {
     ErrorDisplayer,
     Message,
     ErrorManager,
+    Datepicker 
   },
   methods: {
     async save() {
+      console.log(this.date);
+      
       await this.axios({
         method: "post",
         url: config.api.path + "products/create",
         data: {
           name: this.name,
           published: this.published === "true",
-          warrantyExpiresOn: this.warrantyExpiresOn,
+          warrantyExpiresOn: this.date,
           price: this.price,
         },
       })
