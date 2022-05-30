@@ -2,15 +2,15 @@
   <div class="w-3/4">
     <div class="mb-4">
       <div class="mb-4">
-        <label class="block mb-2 text-sm font-bold text-gray-700" for="Name">
-          Name
+        <label class="block mb-2 text-sm font-bold text-gray-700" for="name">
+          name
         </label>
         <input
           class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-          id="Name"
+          id="name"
           type="text"
-          placeholder="Name"
-          v-model="Name"
+          placeholder="name"
+          v-model="name"
         />
       </div>
 
@@ -59,7 +59,7 @@
     </div>
 
     <div class="flex justify-center">
-      <button class="btn btn-success" @click="register">Save</button>
+      <button class="btn btn-success" @click="save">Save</button>
     </div>
 
     <div v-if="success === false">
@@ -95,6 +95,31 @@ export default {
     ErrorDisplayer,
     Message,
     ErrorManager,
+  },
+  methods: {
+    async save() {
+      await this.axios({
+        method: "post",
+        url: config.api.path + "products/create",
+        data: {
+          name: this.name,
+          published: (this.published === 'true'),
+          warrantyExpiresOn: this.warrantyExpiresOn,
+          price: this.price,
+        },
+      })
+        .then((response) => {
+          this.success = true;
+          this.message = {
+            type: "alert-success",
+            content: "The product has been created",
+          };
+        })
+        .catch((error) => {
+          this.success = false;
+          this.errors = this.$refs.errorManager.friendlyMessage(error);
+        });
+    },
   },
 };
 </script>
