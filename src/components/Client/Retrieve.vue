@@ -64,19 +64,17 @@ export default {
   },
   methods: {
     async register() {
-      console.log("Data : ");
-      console.log(this.qrcode);
-      console.log(this.ownerId);
-
       await this.axios({
         method: "post",
         url: config.api.path + "products/retrieve",
         data: {
           qrcode: this.qrcode,
-          qrcode: this.qrcode,
+          ownerId: this.ownerId,
         },
       })
         .then((response) => {
+          console.log(response);
+          
           this.success = true;
 
           this.message = {
