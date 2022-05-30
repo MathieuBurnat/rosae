@@ -1,5 +1,24 @@
 <template>
   <div class="w-3/4">
+    <div class="mb-8">
+      <label class="block mb-2 text-sm font-bold text-gray-700" for="productId">
+        About
+      </label>
+
+      <div
+        tabindex="0"
+        class="max-w-xs border collapse collapse-plus border-base-300 bg-base-100 rounded-box"
+      >
+        <div class="text-xl font-medium collapse-title">
+          How to create an commercial offer ?
+        </div>
+        <div class="collapse-content">
+          <p> Create an commercial offer will inform every client connected to a product. It will also be saved on the blockchain. </p>
+          <p> If you change the event type, you could see that the action changes, it's because the value could sometimes be an pourcentage or an discount coupon </p>
+        </div>
+      </div>
+    </div>
+
     <div class="mb-4">
       <label class="block mb-2 text-sm font-bold text-gray-700" for="content">
         content
@@ -72,19 +91,20 @@
         </label>
       </div>
     </div>
-
-    <div class="flex justify-center">
-      <button class="btn btn-success" @click="save">Save</button>
-    </div>
-
-    <div v-if="success === false">
-      <ErrorDisplayer :errors="errors" />
-    </div>
-
-    <div v-if="success === true">
-      <Message :message="message" />
-    </div>
   </div>
+
+  <div class="flex justify-center">
+    <button class="btn btn-success" @click="save">Save</button>
+  </div>
+
+  <div v-if="success === false">
+    <ErrorDisplayer :errors="errors" />
+  </div>
+
+  <div v-if="success === true">
+    <Message :message="message" />
+  </div>
+
   <ErrorManager ref="errorManager" />
 </template>
 
