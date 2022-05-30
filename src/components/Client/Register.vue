@@ -51,12 +51,15 @@
       <Message :message="message" />
     </div>
   </div>
+    <ErrorManager  ref="errorManager" />
+
 </template>
 
 <script>
 import config from "../../config.js";
 import ErrorDisplayer from "../ErrorDisplayer.vue";
 import Message from "../Message.vue";
+import ErrorManager from "../errorManager.vue";
 
 export default {
   data() {
@@ -72,6 +75,7 @@ export default {
   components: {
     ErrorDisplayer,
     Message,
+    ErrorManager ,
   },
   methods: {
     async register() {
@@ -94,13 +98,7 @@ export default {
         })
         .catch((error) => {
           this.success = false;
-          
-          // If the api is not alive, the error.response is undefined
-          // So the error message will explain that the api connection is out
-          if (error.response.data.message === undefined)
-            this.errors = "The connection of the api is not alive..";
-          else //otherwise return the error message
-            this.errors = error.response.data.message;
+          this.errors = this.$refs.errorManager.friendlyMessage(error)
         });
 
       console.log(this.errors);
