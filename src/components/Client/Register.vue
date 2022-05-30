@@ -94,9 +94,13 @@ export default {
         })
         .catch((error) => {
           this.success = false;
-          console.log(error.response.data.message);
-
-          this.errors = error.response.data.message;
+          
+          // If the api is not alive, the error.response is undefined
+          // So the error message will explain that the api connection is out
+          if (error.response.data.message === undefined)
+            this.errors = "The connection of the api is not alive..";
+          else //otherwise return the error message
+            this.errors = error.response.data.message;
         });
 
       console.log(this.errors);
