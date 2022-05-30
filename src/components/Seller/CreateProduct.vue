@@ -17,13 +17,18 @@
       <label class="block mb-2 text-sm font-bold text-gray-700" for="published">
         Published the product ?
       </label>
-      <input
-        class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-        id="published"
-        type="text"
-        placeholder="published"
-        v-model="published"
-      />
+      <div class="form-control">
+        <label class="cursor-pointer label">
+          <input
+            type="checkbox"
+            class="toggle toggle-primary"
+            checked
+            v-model="published"
+          />
+          <span class="label-text" v-if="published">The product will be created and published </span>
+          <span class="label-text" v-if="!published">The product will be created but not published </span>
+        </label>
+      </div>
     </div>
 
     <div class="mb-4">
@@ -43,10 +48,7 @@
     </div>
 
     <div class="mb-4">
-      <label
-        class="block mb-2 text-sm font-bold text-gray-700"
-        for="price"
-      >
+      <label class="block mb-2 text-sm font-bold text-gray-700" for="price">
         Price
       </label>
       <input
@@ -86,7 +88,7 @@ export default {
       errors: "",
       message: "",
       name: "",
-      published: false,
+      published: true,
       warrantyExpiresOn: "",
       price: 15,
     };
@@ -103,7 +105,7 @@ export default {
         url: config.api.path + "products/create",
         data: {
           name: this.name,
-          published: (this.published === 'true'),
+          published: this.published === "true",
           warrantyExpiresOn: this.warrantyExpiresOn,
           price: this.price,
         },
