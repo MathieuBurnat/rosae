@@ -3,9 +3,9 @@
     <div class="grid h-auto card rounded-box place-items-center">
     <h1> Seller section </h1>
       <div>
-        <button class="w-40 m-1 btn" @click="generate_qrcode">Generate qrcode</button>
+        <button class="m-1 w-50 btn" @click="generate_qrcode">Generate qrcode</button>
 
-        <button class="w-40 m-1 btn" @click="update_status">Update a Qrcode's status</button>
+        <button class="m-1 w-50 btn" @click="update_status">Update a product's status</button>
       </div>
     </div>
     <div class="divider"></div>

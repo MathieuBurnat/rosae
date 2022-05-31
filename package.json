@@ -2,8 +2,9 @@
   "name": "vitevite",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --port 3001",
-    "build": "vite build"
+    "dev": "vite",
+    "build": "vite build",
+    "s": "vite --port 3001"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
