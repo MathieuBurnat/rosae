@@ -55,7 +55,7 @@ export default {
         method: "post",
         url: config.api.path + "products/qrcode/generate",
         data: {
-          productId: this.productId,
+          id: this.productId,
         },
       })
         .then((response) => {
@@ -63,8 +63,9 @@ export default {
 
           this.message = {
             type: "alert-success",
-            content: "The product's qrcode has been generated",
+            content: "The product's qrcode has been generated : " + response.data.qrcode,
           };
+
         })
         .catch((error) => {
           this.success = false;
