@@ -5,7 +5,7 @@
       <div>
         <button class="w-40 m-1 btn" @click="generate_qrcode">Generate qrcode</button>
 
-        <button class="w-40 m-1 btn" @click="update_status">Update a Qrcode's statis</button>
+        <button class="w-40 m-1 btn" @click="update_status">Update a Qrcode's status</button>
       </div>
     </div>
     <div class="divider"></div>
