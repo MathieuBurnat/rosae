@@ -55,7 +55,7 @@ import ErrorDisplayer from "../ErrorDisplayer.vue";
 import Message from "../Message.vue";
 import ErrorManager from "../errorManager.vue";
 import Loadingbar from "../Loadingbar.vue";
-import ModalProductDetails from "../Product/ModalDetails.vue";
+import ModalProductDetails from "../Product/ModalProductDetails.vue";
 import FriendlyStatus from "../Product/FriendlyStatus.vue";
 export default {
   data() {

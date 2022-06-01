@@ -68,7 +68,7 @@
   </div>
 </template>
 <script>
-import FriendlyStatus from "../Product/FriendlyStatus.vue";
+import FriendlyStatus from "./FriendlyStatus.vue";
 import datePretty from "../../assets/dateFormater.js";
 
 export default {
