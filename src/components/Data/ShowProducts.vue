@@ -1,23 +1,32 @@
 <template>
   <div class="w-3/4">
-    <tbody
-      v-for="product in products"
-      :key="product.id"
-      v-on:click="clickableTest(product)"
-    >
-      <tr class="clickable-row">
-        <td>{{ product.id }}</td>
-        <td style="text-align: center">{{ product.name }}</td>
-        <td style="text-align: center">{{ product.price }}</td>
-      </tr>
-    </tbody>
+    <div class="overflow-x-auto">
+      <table class="table w-full">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Owner</th>
+          </tr>
+        </thead>
+        <tbody
+          v-for="product in products"
+          :key="product.id"
+          v-on:click="clickableTest(product)"
+        >
+          <tr class="hover">
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.status }}</td>
+            <td>{{ product.ownerId }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <div v-if="success === false">
       <ErrorDisplayer :errors="errors" />
-    </div>
-
-    <div v-if="success === true">
-      <Message :message="message" />
     </div>
   </div>
   <ErrorManager ref="errorManager" />
@@ -50,11 +59,6 @@ export default {
     })
       .then((response) => {
         this.success = true;
-
-        this.message = {
-          type: "alert-success",
-          content: "Here yours products darling",
-        };
 
         this.products = response.data;
       })
