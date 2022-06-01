@@ -1,5 +1,7 @@
 <template>
   <div v-if="products" class="w-3/4">
+    <ModalDetails :isOpen="OpenModal" />
+
     <div class="overflow-x-auto">
       <table class="table w-full">
         <thead>
@@ -31,24 +33,24 @@
               </div>
               <div v-else></div>
             </td>
-                        <td>
+            <td>
               <div v-if="product.status == 'READY_TO_USE'">
                 <div>
                   <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  color="green"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    color="green"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
                 </div>
               </div>
               <div v-if="product.status == 'UNDER_REPAIR'">🛠️</div>
@@ -73,6 +75,7 @@ import ErrorDisplayer from "../ErrorDisplayer.vue";
 import Message from "../Message.vue";
 import ErrorManager from "../errorManager.vue";
 import Loadingbar from "../Loadingbar.vue";
+import ModalDetails from "../Product/ModalDetails.vue";
 
 export default {
   data() {
@@ -81,6 +84,7 @@ export default {
       success: "",
       message: "",
       products: "",
+      OpenModal: false,
     };
   },
   components: {
@@ -88,6 +92,7 @@ export default {
     Message,
     ErrorManager,
     Loadingbar,
+    ModalDetails,
   },
   async created() {
     await this.axios({
@@ -107,6 +112,7 @@ export default {
   methods: {
     clickableTest(product) {
       console.log(product);
+      this.OpenModal = !this.OpenModal;
     },
   },
 };
