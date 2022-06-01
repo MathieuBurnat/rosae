@@ -19,24 +19,6 @@
             </li>
             <li>
               <div>
-                <span class="w-full font-semibold">Warranty expires on</span>
-                <span
-                  class="top-0 w-full text-sm text-right opacity-50 align-right"
-                  >{{ date }}</span
-                >
-              </div>
-            </li>
-            <li>
-              <div>
-                <span class="w-full font-semibold">Price</span>
-                <span
-                  class="top-0 w-full text-sm text-right opacity-50 align-right"
-                  >{{ product.price }}</span
-                >
-              </div>
-            </li>
-            <li>
-              <div>
                 <span class="w-full font-semibold">Current owner</span>
                 <span
                   v-if="product.owner"
@@ -50,6 +32,24 @@
                 >
                   Not owned
                 </span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <span class="w-full font-semibold">Price</span>
+                <span
+                  class="top-0 w-full text-sm text-right opacity-50 align-right"
+                  >{{ product.price }}</span
+                >
+              </div>
+            </li>
+            <li>
+              <div>
+                <span class="w-full font-semibold">Warranty expires on</span>
+                <span
+                  class="top-0 w-full text-sm text-right opacity-50 align-right"
+                  >{{ date }}</span
+                >
               </div>
             </li>
           </ul>
@@ -78,7 +78,6 @@ export default {
   },
   data() {
     return {
-      product: "",
       date: datePretty(this.product.warrantyExpiresOn),
     };
   },
