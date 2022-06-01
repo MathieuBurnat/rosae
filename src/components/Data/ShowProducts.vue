@@ -1,5 +1,5 @@
 <template>
-  <div class="w-3/4">
+  <div v-if="products" class="w-3/4">
     <div class="overflow-x-auto">
       <table class="table w-full">
         <thead>
@@ -16,18 +16,30 @@
           v-on:click="clickableTest(product)"
         >
           <tr class="hover">
-            <td>{{ product.name }}</td>
+            <td>
+              <div class="flex items-center space-x-3">
+                <div>
+                  <div class="font-semibold">{{ product.name }}</div>
+                  <div class="text-sm opacity-50">{{ product.id }}</div>
+                </div>
+              </div>
+            </td>
             <td>{{ product.price }}</td>
-            <td>{{ product.status }}</td>
+            <td>
+              <div>{{ product.status }}</div>
+            </td>
             <td>{{ product.ownerId }}</td>
           </tr>
         </tbody>
       </table>
     </div>
+  </div>
+  <div v-else>
+    <p>Loading ...</p>
+  </div>
 
-    <div v-if="success === false">
-      <ErrorDisplayer :errors="errors" />
-    </div>
+  <div v-if="success === false">
+    <ErrorDisplayer :errors="errors" />
   </div>
   <ErrorManager ref="errorManager" />
 </template>
@@ -41,7 +53,7 @@ import ErrorManager from "../errorManager.vue";
 export default {
   data() {
     return {
-      errors: "",
+      errors: "hey",
       success: "",
       message: "",
       products: "",
