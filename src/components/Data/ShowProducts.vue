@@ -34,9 +34,7 @@
       </table>
     </div>
   </div>
-  <div v-else>
-    <p>Loading ...</p>
-  </div>
+  <Loadingbar v-else/>
 
   <div v-if="success === false">
     <ErrorDisplayer :errors="errors" />
@@ -49,6 +47,7 @@ import config from "../../config.js";
 import ErrorDisplayer from "../ErrorDisplayer.vue";
 import Message from "../Message.vue";
 import ErrorManager from "../errorManager.vue";
+import Loadingbar from "../Loadingbar.vue";
 
 export default {
   data() {
@@ -63,6 +62,7 @@ export default {
     ErrorDisplayer,
     Message,
     ErrorManager,
+    Loadingbar,
   },
   async created() {
     await this.axios({
