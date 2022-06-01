@@ -6,8 +6,8 @@
           <tr>
             <th>Product</th>
             <th>Price</th>
-            <th>Status</th>
             <th>Owner</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody
@@ -26,15 +26,40 @@
             </td>
             <td>{{ product.price }}</td>
             <td>
-              <div>{{ product.status }}</div>
+              <div v-if="product.owner">
+                {{ product.owner.lastname }} {{ product.owner.firstname[0] }}
+              </div>
+              <div v-else></div>
             </td>
-            <td>{{ product.ownerId }}</td>
+                        <td>
+              <div v-if="product.status == 'READY_TO_USE'">
+                <div>
+                  <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  color="green"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                </div>
+              </div>
+              <div v-if="product.status == 'UNDER_REPAIR'">🛠️</div>
+              <div v-if="product.status == 'OUT'">💀</div>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-  <Loadingbar v-else/>
+  <Loadingbar v-else />
 
   <div v-if="success === false">
     <ErrorDisplayer :errors="errors" />
@@ -52,7 +77,7 @@ import Loadingbar from "../Loadingbar.vue";
 export default {
   data() {
     return {
-      errors: "hey",
+      errors: "",
       success: "",
       message: "",
       products: "",
