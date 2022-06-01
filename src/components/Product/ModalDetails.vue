@@ -14,10 +14,7 @@
             <li>
               <div>
                 <span class="w-full font-semibold">Status</span>
-                <span
-                  class="top-0 w-full text-sm text-right opacity-50 align-right"
-                  >{{ product.status }}</span
-                >
+                <FriendlyStatus :status="product.status" />
               </div>
             </li>
             <li>
@@ -71,7 +68,12 @@
   </div>
 </template>
 <script>
+import FriendlyStatus from "../Product/FriendlyStatus.vue";
+
 export default {
   props: ["isOpen", "product"],
+  components: {
+    FriendlyStatus,
+  },
 };
 </script>
