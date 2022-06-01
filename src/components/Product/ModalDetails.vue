@@ -22,7 +22,7 @@
                 <span class="w-full font-semibold">Warranty expires on</span>
                 <span
                   class="top-0 w-full text-sm text-right opacity-50 align-right"
-                  >{{ product.warrantyExpiresOn }}</span
+                  >{{ date }}</span
                 >
               </div>
             </li>
@@ -69,11 +69,20 @@
 </template>
 <script>
 import FriendlyStatus from "../Product/FriendlyStatus.vue";
+import datePretty from "../../assets/dateFormater.js";
 
 export default {
   props: ["isOpen", "product"],
   components: {
-    FriendlyStatus,
+    FriendlyStatus
+  },
+  data() {
+    return {
+      product: "",
+      date: datePretty(this.product.warrantyExpiresOn),
+    };
+  },
+  computed: {
   },
 };
 </script>
