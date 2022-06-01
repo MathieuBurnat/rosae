@@ -1,16 +1,67 @@
 <template>
   <div v-if="isOpen">
-    <!-- Put this part before </body> tag -->
     <input type="checkbox" id="my-modal-5" class="modal-toggle" />
-    <div id="myModal23" class="modal modal-open" v-if="isOpen">
-      <div class="w-11/12 max-w-5xl modal-box">
-        <h3 class="text-lg font-bold">Congratulations random Interner user!</h3>
-        <p class="py-4">
-          You've been selected for a chance to get one year of subscription to
-          use Wikipedia for free!
-        </p>
+    <div class="modal modal-open" v-if="isOpen">
+      <div class="w-11/12 max-w-full modal-box">
+        <div class="text-center">
+          <h1 class="text-lg font-bold">{{ product.name }}</h1>
+          <div class="text-sm opacity-50">{{ product.id }}</div>
+        </div>
+
+        <div class="m-8">
+          <div class="font-semibold">Information about the product</div>
+          <ul class="w-3/6 p-2 menu bg-base-100 rounded-box">
+            <li>
+              <div>
+                <span class="w-full font-semibold">Status</span>
+                <span
+                  class="top-0 w-full text-sm text-right opacity-50 align-right"
+                  >{{ product.status }}</span
+                >
+              </div>
+            </li>
+            <li>
+              <div>
+                <span class="w-full font-semibold">Warranty expires on</span>
+                <span
+                  class="top-0 w-full text-sm text-right opacity-50 align-right"
+                  >{{ product.warrantyExpiresOn }}</span
+                >
+              </div>
+            </li>
+            <li>
+              <div>
+                <span class="w-full font-semibold">Price</span>
+                <span
+                  class="top-0 w-full text-sm text-right opacity-50 align-right"
+                  >{{ product.price }}</span
+                >
+              </div>
+            </li>
+            <li>
+              <div>
+                <span class="w-full font-semibold">Current owner</span>
+                <span
+                  v-if="product.owner"
+                  class="top-0 w-full text-sm text-right opacity-50 align-right"
+                  >{{ product.owner.firstname }}
+                  {{ product.owner.lastname }}</span
+                >
+                <span
+                  v-else
+                  class="top-0 w-full text-sm text-right opacity-50 align-right"
+                >
+                  Not owned
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
         <div class="modal-action">
-          <button class="btn btn-success" @click="isOpen = false">Yay!</button>
+          <button class="btn btn-success" @click="isOpen = false">
+            Go Back
+          </button>
         </div>
       </div>
     </div>
@@ -21,9 +72,6 @@
 </template>
 <script>
 export default {
-  props: ["isOpen"],
-  return: {
-    isOpen: true,
-  },
+  props: ["isOpen", "product"],
 };
 </script>

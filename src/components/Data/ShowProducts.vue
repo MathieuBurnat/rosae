@@ -1,6 +1,6 @@
 <template>
   <div v-if="products" class="w-3/4">
-    <ModalDetails :isOpen="OpenModal" />
+    <ModalProductDetails :isOpen="OpenModal" :product="selectedProduct"/>
 
     <div class="overflow-x-auto">
       <table class="table w-full">
@@ -15,7 +15,7 @@
         <tbody
           v-for="product in products"
           :key="product.id"
-          v-on:click="clickableTest(product)"
+          v-on:click="showProductDetails(product)"
         >
           <tr class="hover">
             <td>
@@ -75,7 +75,7 @@ import ErrorDisplayer from "../ErrorDisplayer.vue";
 import Message from "../Message.vue";
 import ErrorManager from "../errorManager.vue";
 import Loadingbar from "../Loadingbar.vue";
-import ModalDetails from "../Product/ModalDetails.vue";
+import ModalProductDetails from "../Product/ModalDetails.vue";
 
 export default {
   data() {
@@ -84,6 +84,7 @@ export default {
       success: "",
       message: "",
       products: "",
+      selectedProduct: "",
       OpenModal: false,
     };
   },
@@ -92,7 +93,7 @@ export default {
     Message,
     ErrorManager,
     Loadingbar,
-    ModalDetails,
+    ModalProductDetails,
   },
   async created() {
     await this.axios({
@@ -101,7 +102,6 @@ export default {
     })
       .then((response) => {
         this.success = true;
-
         this.products = response.data;
       })
       .catch((error) => {
@@ -110,8 +110,10 @@ export default {
       });
   },
   methods: {
-    clickableTest(product) {
+    showProductDetails(product) {
       console.log(product);
+      
+      this.selectedProduct = product;
       this.OpenModal = !this.OpenModal;
     },
   },
