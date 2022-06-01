@@ -6,6 +6,7 @@ import Header from "./components/Header.vue";
 import Client from "./pages/Client.vue";
 import Provider from "./pages/Provider.vue";
 import Seller from "./pages/Seller.vue";
+import Data from "./pages/Data.vue";
 
 // Implement a basic router
 const routes = {
@@ -13,6 +14,7 @@ const routes = {
   "/client": Client,
   "/provider": Provider,
   "/seller": Seller,
+  "/data": Data,
   "/": Home,
 };
 
