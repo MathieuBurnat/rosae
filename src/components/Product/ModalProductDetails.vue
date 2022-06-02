@@ -68,9 +68,6 @@
         </div>
       </div>
     </div>
-    <div else>
-      <p>nop</p>
-    </div>
   </div>
 </template>
 <script>
