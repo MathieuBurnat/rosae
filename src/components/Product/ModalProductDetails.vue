@@ -58,18 +58,7 @@
         </div>
 
         <div class="p-4 m-8 bg-zinc-50 rounded-2xl">
-          <div class="mb-4 font-semibold text-center">Tracker activities</div>
-          <div class="w-full text-center">
-            <ul class="steps">
-              <li class="step">Created</li>
-              <li class="step">qrcode generated</li>
-              <li class="step">retrieved</li>
-              <li class="step step-accent">new owner</li>
-              <li class="step step-accent">Under Repair</li>
-              <li class="step step-accent">Ready</li>
-              <li class="step">Product Dead</li>
-            </ul>
-          </div>
+          <TrackerActivities :product="product"/>
         </div>
 
         <div class="modal-action">
@@ -87,11 +76,13 @@
 <script>
 import FriendlyStatus from "./FriendlyStatus.vue";
 import datePretty from "../../assets/dateFormater.js";
+import TrackerActivities from "./TrackerActivities.vue";
 
 export default {
   props: ["isOpen", "product"],
   components: {
     FriendlyStatus,
+    TrackerActivities
   },
   data() {
     return {
