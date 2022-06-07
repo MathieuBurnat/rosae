@@ -4,8 +4,7 @@
     <ul class="steps">
       <li class="step">Created</li>
       <li class="step">qrcode generated</li>
-      <li class="step">retrieved</li>
-      <li class="step step-accent">new owner</li>
+      <li class="step step-accent">retrieved</li>
       <li class="step step-accent">Under Repair</li>
       <li class="step step-accent">Ready</li>
       <li class="step">Product Dead</li>

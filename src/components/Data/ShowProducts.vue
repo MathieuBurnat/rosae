@@ -1,8 +1,8 @@
 <template>
   <div v-if="products" class="w-3/4">
-    <ModalProductDetails :isOpen="OpenModal" :product="selectedProduct"/>
+    <ModalProductDetails :isOpen="OpenModal" :product="selectedProduct" />
 
-    <div class="overflow-x-auto">
+    <div v-if="products.length > 0" class="overflow-x-auto">
       <table class="table w-full">
         <thead>
           <tr>
@@ -40,6 +40,26 @@
         </tbody>
       </table>
     </div>
+    <div v-else>
+      <div class="shadow-lg alert alert-warning">
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="flex-shrink-0 w-6 h-6 stroke-current"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+            />
+          </svg>
+          <span>There's no product, you can create one into <a href="#/provider" class="link link-primary">the provider page</a>.</span>
+        </div>
+      </div>
+    </div>
   </div>
   <Loadingbar v-else />
 
@@ -74,7 +94,7 @@ export default {
     ErrorManager,
     Loadingbar,
     ModalProductDetails,
-    FriendlyStatus
+    FriendlyStatus,
   },
   async created() {
     await this.axios({
@@ -93,7 +113,7 @@ export default {
   methods: {
     showProductDetails(product) {
       console.log(product);
-      
+
       this.selectedProduct = product;
       this.OpenModal = !this.OpenModal;
     },
