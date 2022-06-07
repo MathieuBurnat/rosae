@@ -1,11 +1,11 @@
 <template>
-  <div class="mb-4 font-semibold text-center">Tracker activities</div>
+  <div class="mb-4 font-semibold text-center">
+    <div>Tracker activities</div>
+  </div>
+
   <div class="w-full text-center" v-if="events">
     <ul class="steps">
-      <template
-        v-for="event in events"
-        :key="event.id"
-      >
+      <template v-for="event in events" :key="event.id">
         <li class="step step-accent" v-if="shouldDisplayStepPrimary(event)">
           {{ event.eventType.slug }}
         </li>
@@ -17,6 +17,10 @@
   </div>
   <div class="w-full" v-else>
     <Loadingbar />
+  </div>
+  
+  <div class="btn btn-xs btn-outline btn-primary" @click="verifyAuthenticity">
+    Verify authenticity
   </div>
 
   <div v-if="success === false">
@@ -61,9 +65,10 @@ export default {
         this.success = false;
         this.errors = this.$refs.errorManager.friendlyMessage(error);
       });
-  },methods : {
+  },
+  methods: {
     shouldDisplayStepPrimary(event) {
-      switch (event.eventType.content){
+      switch (event.eventType.content) {
         case "PRODUCT_CREATED":
         case "PRODUCT_QRCODE_GENERATED":
         case "OUT":
@@ -71,6 +76,9 @@ export default {
         default:
           return true;
       }
+    },
+    verifyAuthenticity() {
+      console.log("verifyAuthenticity");
     },
   },
 };
