@@ -112,8 +112,6 @@ export default {
   },
   methods: {
     showProductDetails(product) {
-      console.log(product);
-
       this.selectedProduct = product;
       this.OpenModal = !this.OpenModal;
     },
