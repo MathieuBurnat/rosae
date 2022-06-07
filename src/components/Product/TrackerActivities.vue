@@ -2,12 +2,17 @@
   <div class="mb-4 font-semibold text-center">Tracker activities</div>
   <div class="w-full text-center" v-if="events">
     <ul class="steps">
-      <li class="step">Created</li>
-      <li class="step">qrcode generated</li>
-      <li class="step step-accent">retrieved</li>
-      <li class="step step-accent">Under Repair</li>
-      <li class="step step-accent">Ready</li>
-      <li class="step">Product Dead</li>
+      <template
+        v-for="event in events"
+        :key="event.id"
+      >
+        <li class="step step-primary" v-if="shouldDisplayStepPrimary(event)">
+          {{ event.eventType.slug }}
+        </li>
+        <li class="step" v-else>
+          {{ event.eventType.slug }}
+        </li>
+      </template>
     </ul>
   </div>
   <div class="w-full" v-else>
@@ -34,12 +39,13 @@ export default {
       success: "",
       events: "",
       errors: "",
+      displayClientSteps: false,
     };
   },
   components: {
     Loadingbar,
     ErrorManager,
-    ErrorDisplayer
+    ErrorDisplayer,
   },
   async created() {
     await this.axios({
@@ -55,6 +61,17 @@ export default {
         this.success = false;
         this.errors = this.$refs.errorManager.friendlyMessage(error);
       });
+  },methods : {
+    shouldDisplayStepPrimary(event) {
+      switch (event.eventType.content){
+        case "PRODUCT_CREATED":
+        case "PRODUCT_QRCODE_GENERATED":
+        case "OUT":
+          return false;
+        default:
+          return true;
+      }
+    },
   },
 };
 </script>
