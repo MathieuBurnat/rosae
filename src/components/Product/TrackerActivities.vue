@@ -6,7 +6,7 @@
         v-for="event in events"
         :key="event.id"
       >
-        <li class="step step-primary" v-if="shouldDisplayStepPrimary(event)">
+        <li class="step step-accent" v-if="shouldDisplayStepPrimary(event)">
           {{ event.eventType.slug }}
         </li>
         <li class="step" v-else>
