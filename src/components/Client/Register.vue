@@ -93,7 +93,7 @@ export default {
 
           this.message = {
             type: "alert-success",
-            content: "The client has been created",
+            content: "The client has been created. Client ID: " + response.data.id,
           };
         })
         .catch((error) => {

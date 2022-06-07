@@ -117,7 +117,7 @@ export default {
           this.success = true;
           this.message = {
             type: "alert-success",
-            content: "The product has been created",
+            content: "The product has been created. Product ID: " + response.data.id,
           };
         })
         .catch((error) => {
