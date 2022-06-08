@@ -2,10 +2,14 @@
   <div class="mb-4 font-semibold text-center">
     <div>Tracker activities</div>
   </div>
-  <EventsTracked :events="events"/>
-  
-  <div class="btn btn-xs btn-outline btn-primary" @click="verifyAuthenticity">
+  <EventsTracked v-if="displayEventsTracked" :events="events" />
+  <EventsCertified v-if="displayEventsCertified" :product="product"/>
+
+  <div v-if="displayEventsTracked" class="btn btn-xs btn-outline btn-primary" @click="verifyAuthenticity">
     Verify authenticity
+  </div>
+  <div v-else class="btn btn-xs btn-outline" @click="verifyAuthenticity">
+    Return
   </div>
 
   <div v-if="success === false">
@@ -20,6 +24,7 @@ import Loadingbar from "../../Loadingbar.vue";
 import ErrorManager from "../../errorManager.vue";
 import ErrorDisplayer from "../../ErrorDisplayer.vue";
 import EventsTracked from "./activitiesRender/EventsTracked.vue";
+import EventsCertified from "./activitiesRender/EventsCertified.vue";
 
 export default {
   props: ["product"],
@@ -28,13 +33,16 @@ export default {
       success: "",
       events: "",
       errors: "",
+      displayEventsTracked: true,
+      displayEventsCertified: false,
     };
   },
   components: {
     Loadingbar,
     ErrorManager,
     ErrorDisplayer,
-    EventsTracked
+    EventsTracked,
+    EventsCertified,
   },
   async created() {
     await this.axios({
@@ -42,7 +50,6 @@ export default {
       url: config.api.path + "products/events/" + this.product.id,
     })
       .then((response) => {
-        console.log(response);
         this.success = true;
         this.events = response.data;
       })
@@ -52,18 +59,17 @@ export default {
       });
   },
   methods: {
-    shouldDisplayStepPrimary(event) {
-      switch (event.eventType.content) {
-        case "PRODUCT_CREATED":
-        case "PRODUCT_QRCODE_GENERATED":
-        case "OUT":
-          return false;
-        default:
-          return true;
-      }
+    openEventsTrackeds() {
+      this.displayEventsTracked = true;
+      this.displayEventsCertified = false;
+    },
+    openEventsCertified() {
+      this.displayEventsTracked = false;
+      this.displayEventsCertified = true;
     },
     verifyAuthenticity() {
-      console.log("verifyAuthenticity");
+      this.displayEventsTracked = !this.displayEventsTracked;
+      this.displayEventsCertified = !this.displayEventsCertified;
     },
   },
 };
