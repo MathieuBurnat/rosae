@@ -3,11 +3,17 @@
     <div>Tracker activities</div>
   </div>
   <EventsTracked v-if="displayEventsTracked" :events="events" />
-  <EventsCertified v-if="displayEventsCertified" :product="product"/>
+  <EventsCertified v-if="displayEventsCertified" :product="product" />
 
-  <div v-if="displayEventsTracked" class="btn btn-xs btn-outline btn-primary" @click="verifyAuthenticity">
-    Verify authenticity
+  <div v-if="displayEventsTracked" class="w-full my-8 text-center">
+    <div
+      class="center btn btn-xs btn-outline btn-primary"
+      @click="verifyAuthenticity"
+    >
+      Verify authenticity
+    </div>
   </div>
+
   <div v-else class="btn btn-xs btn-outline" @click="verifyAuthenticity">
     Return
   </div>
