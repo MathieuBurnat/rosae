@@ -73,7 +73,7 @@
 <script>
 import FriendlyStatus from "./FriendlyStatus.vue";
 import datePretty from "../../assets/dateFormater.js";
-import TrackerActivities from "./TrackerActivities.vue";
+import TrackerActivities from "./TrackerActivities/TrackerActivities.vue";
 
 export default {
   props: ["isOpen", "product"],

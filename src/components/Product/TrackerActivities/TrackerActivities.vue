@@ -2,22 +2,7 @@
   <div class="mb-4 font-semibold text-center">
     <div>Tracker activities</div>
   </div>
-
-  <div class="w-full text-center" v-if="events">
-    <ul class="steps">
-      <template v-for="event in events" :key="event.id">
-        <li class="step step-accent" v-if="shouldDisplayStepPrimary(event)">
-          {{ event.eventType.slug }}
-        </li>
-        <li class="step" v-else>
-          {{ event.eventType.slug }}
-        </li>
-      </template>
-    </ul>
-  </div>
-  <div class="w-full" v-else>
-    <Loadingbar />
-  </div>
+  <EventsTracked :events="events"/>
   
   <div class="btn btn-xs btn-outline btn-primary" @click="verifyAuthenticity">
     Verify authenticity
@@ -30,11 +15,11 @@
 </template>
 
 <script>
-// /products/events/:id
-import config from "../../config.js";
-import Loadingbar from "../Loadingbar.vue";
-import ErrorManager from "../errorManager.vue";
-import ErrorDisplayer from "../ErrorDisplayer.vue";
+import config from "../../../config.js";
+import Loadingbar from "../../Loadingbar.vue";
+import ErrorManager from "../../errorManager.vue";
+import ErrorDisplayer from "../../ErrorDisplayer.vue";
+import EventsTracked from "./activitiesRender/EventsTracked.vue";
 
 export default {
   props: ["product"],
@@ -43,13 +28,13 @@ export default {
       success: "",
       events: "",
       errors: "",
-      displayClientSteps: false,
     };
   },
   components: {
     Loadingbar,
     ErrorManager,
     ErrorDisplayer,
+    EventsTracked
   },
   async created() {
     await this.axios({
