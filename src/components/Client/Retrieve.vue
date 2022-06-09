@@ -6,7 +6,7 @@
           qrcode
         </label>
         <div>
-          <div class="my-8 tabs">
+          <div class="mt-2 mb-8 tabs">
             <btn
               @click="openScan"
               class="w-2/4 tab tab-bordered"
@@ -22,22 +22,22 @@
           </div>
           <div>
             <div v-if="showScanner">
-              <div class="flex flex-col w-full border-opacity-50">
+              <div class="flex w-full">
                 <div
-                  class="grid h-20 card bg-base-100 rounded-box place-items-center"
+                  class="grid flex-grow w-2/4 h-20 card bg-base-200 rounded-box place-items-center"
                 >
                   <QrCapture @decode="onDecode" class="mb"></QrCapture>
                 </div>
-                <div class="divider">OR</div>
+                <div class="divider divider-horizontal">OR</div>
                 <div
-                  class="grid h-20 card bg-base-100 rounded-box place-items-center"
+                  class="grid flex-grow w-2/4 h-20 card bg-base-200 rounded-box place-items-center"
                 >
-                  <QrDropzone class="w-full h-full text-center bg-base-300" @decode="onDecode">
+                  <QrDropzone class="w-full h-full text-center" @decode="onDecode">
                     <p class="mt-6">Drop image here.</p>
                   </QrDropzone>
                 </div>
               </div>
-              <div class="result">Result: {{ data }}</div>
+              <div class="result" v-if="qrcode">Result : {{ qrcode }}</div>
             </div>
             <div v-if="showInput">
               <input
@@ -94,7 +94,6 @@ export default {
       success: "",
       qrcode: "",
       ownerId: "",
-      data: "",
       showScanner: false,
       showInput: false,
     };
@@ -139,8 +138,8 @@ export default {
       this.showScanner = false;
       this.showInput = true;
     },
-    onDecode(data) {
-      this.data = data;
+    onDecode(qrcode) {
+      this.qrcode = qrcode;
     },
   },
 };
