@@ -33,7 +33,7 @@ export default {
   async created() {
     await this.axios({
       method: "get",
-      url: config.api.path + "blockchains/verify/events/" + this.product.id,
+      url: config.api.path + "blockchains/certify/events/" + this.product.id,
     })
       .then((response) => {
         this.events = response.data;

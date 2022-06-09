@@ -8,13 +8,13 @@
   <div v-if="displayEventsTracked" class="w-full my-8 text-center">
     <div
       class="center btn btn-xs btn-outline btn-primary"
-      @click="verifyAuthenticity"
+      @click="certifyAuthenticity"
     >
-      Verify authenticity
+      certify authenticity
     </div>
   </div>
 
-  <div v-else class="btn btn-xs btn-outline" @click="verifyAuthenticity">
+  <div v-else class="btn btn-xs btn-outline" @click="certifyAuthenticity">
     Return
   </div>
 
@@ -73,7 +73,7 @@ export default {
       this.displayEventsTracked = false;
       this.displayEventsCertified = true;
     },
-    verifyAuthenticity() {
+    certifyAuthenticity() {
       this.displayEventsTracked = !this.displayEventsTracked;
       this.displayEventsCertified = !this.displayEventsCertified;
     },
