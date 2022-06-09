@@ -22,7 +22,22 @@
           </div>
           <div>
             <div v-if="showScanner">
-              <p>Scanner :]</p>
+              <div class="flex flex-col w-full border-opacity-50">
+                <div
+                  class="grid h-20 card bg-base-100 rounded-box place-items-center"
+                >
+                  <QrCapture @decode="onDecode" class="mb"></QrCapture>
+                </div>
+                <div class="divider">OR</div>
+                <div
+                  class="grid h-20 card bg-base-100 rounded-box place-items-center"
+                >
+                  <QrDropzone class="w-full h-full text-center bg-base-300" @decode="onDecode">
+                    <p class="mt-6">Drop image here.</p>
+                  </QrDropzone>
+                </div>
+              </div>
+              <div class="result">Result: {{ data }}</div>
             </div>
             <div v-if="showInput">
               <input
@@ -70,6 +85,7 @@ import config from "../../config.js";
 import ErrorDisplayer from "../ErrorDisplayer.vue";
 import Message from "../Message.vue";
 import ErrorManager from "../errorManager.vue";
+import { QrCapture, QrDropzone  } from "vue3-qr-reader";
 
 export default {
   data() {
@@ -78,6 +94,7 @@ export default {
       success: "",
       qrcode: "",
       ownerId: "",
+      data: "",
       showScanner: false,
       showInput: false,
     };
@@ -86,6 +103,8 @@ export default {
     ErrorDisplayer,
     Message,
     ErrorManager,
+    QrCapture,
+    QrDropzone
   },
   methods: {
     async register() {
@@ -119,6 +138,9 @@ export default {
     openMan() {
       this.showScanner = false;
       this.showInput = true;
+    },
+    onDecode(data) {
+      this.data = data;
     },
   },
 };
