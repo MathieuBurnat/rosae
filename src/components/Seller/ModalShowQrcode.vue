@@ -8,10 +8,15 @@
           <div class="text-sm opacity-50">{{ qrcode }}</div>
         </div>
 
-        <div class="p-4 m-8 bg-zinc-50 rounded-2xl">
-          <div class="font-semibold text-center">
-            <VueQrcode :value="qrcode"></VueQrcode>
+        <div class="p-4 m-8 text-center bg-zinc-50 rounded-2xl">
+          <div class="font-semibold">
+            <p>QR Code</p>
           </div>
+            <VueQrcode class="inline" :value="qrcode"></VueQrcode>
+          <div class="font-semibold">
+            <p>Value</p>
+          </div>
+          <p class="text-sm opacity-50">{{ qrcode }}</p>
         </div>
 
         <div class="modal-action">
