@@ -9,7 +9,9 @@
         </div>
 
         <div class="p-4 m-8 bg-zinc-50 rounded-2xl">
-          <div class="font-semibold text-center">Hello There</div>
+          <div class="font-semibold text-center">
+            <VueQrcode :value="qrcode"></VueQrcode>
+          </div>
         </div>
 
         <div class="modal-action">
@@ -22,12 +24,12 @@
   </div>
 </template>
 <script>
+import VueQrcode from "@chenfengyuan/vue-qrcode";
+
 export default {
   props: ["isOpen", "qrcode"],
-  components: {},
-  data() {
-    return {};
+  components: {
+    VueQrcode,
   },
-  computed: {},
 };
 </script>
