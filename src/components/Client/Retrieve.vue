@@ -26,18 +26,21 @@
                 <div
                   class="grid flex-grow w-2/4 h-20 card bg-base-200 rounded-box place-items-center"
                 >
-                  <QrCapture @decode="onDecode" class="mb"></QrCapture>
-                </div>
-                <div class="divider divider-horizontal">OR</div>
-                <div
-                  class="grid flex-grow w-2/4 h-20 card bg-base-200 rounded-box place-items-center"
-                >
-                  <QrDropzone class="w-full h-full text-center" @decode="onDecode">
+                  <QrDropzone
+                    class="w-full h-full text-center"
+                    @decode="onDecode"
+                  >
                     <p class="mt-6">Drop image here.</p>
                   </QrDropzone>
                 </div>
+                <div class="divider divider-horizontal" />
+                <div
+                  class="grid flex-grow w-2/4 h-20 card bg-base-200 rounded-box place-items-center"
+                >
+                  <QrCapture @decode="onDecode" class="mb"></QrCapture>
+                </div>
               </div>
-              <div class="result" v-if="qrcode">Result : {{ qrcode }}</div>
+              <div class="result" v-if="qrcode">Value : {{ qrcode }}</div>
             </div>
             <div v-if="showInput">
               <input
@@ -85,7 +88,7 @@ import config from "../../config.js";
 import ErrorDisplayer from "../ErrorDisplayer.vue";
 import Message from "../Message.vue";
 import ErrorManager from "../errorManager.vue";
-import { QrCapture, QrDropzone  } from "vue3-qr-reader";
+import { QrCapture, QrDropzone } from "vue3-qr-reader";
 
 export default {
   data() {
@@ -103,7 +106,7 @@ export default {
     Message,
     ErrorManager,
     QrCapture,
-    QrDropzone
+    QrDropzone,
   },
   methods: {
     async register() {
