@@ -1,5 +1,6 @@
 <template>
   <div class="w-3/4">
+    <ModalShowQrcode :isOpen="OpenModal" :qrcode="qrcode" />
     <div class="mb-4">
       <label class="block mb-2 text-sm font-bold text-gray-700" for="product">
         product
@@ -17,6 +18,12 @@
       <button class="btn btn-success" @click="generate">Save</button>
     </div>
 
+    <div v-if="qrcode">
+      <button class="btn btn-active btn-primary" @click="showQrModal">
+        Print QR Code
+      </button>
+    </div>
+
     <div v-if="success === false">
       <ErrorDisplayer :errors="errors" />
     </div>
@@ -25,8 +32,7 @@
       <Message :message="message" />
     </div>
   </div>
-    <ErrorManager  ref="errorManager" />
-
+  <ErrorManager ref="errorManager" />
 </template>
 
 <script>
@@ -34,7 +40,7 @@ import config from "../../config.js";
 import ErrorDisplayer from "../ErrorDisplayer.vue";
 import Message from "../Message.vue";
 import ErrorManager from "../errorManager.vue";
-
+import ModalShowQrcode from "./ModalShowQrcode.vue";
 export default {
   data() {
     return {
@@ -42,12 +48,15 @@ export default {
       success: "",
       message: "",
       productId: "",
+      qrcode: "",
+      OpenModal: false,
     };
   },
   components: {
     ErrorDisplayer,
     Message,
-    ErrorManager ,
+    ErrorManager,
+    ModalShowQrcode,
   },
   methods: {
     async generate() {
@@ -63,14 +72,19 @@ export default {
 
           this.message = {
             type: "alert-success",
-            content: "The product's qrcode has been generated : " + response.data.qrcode,
+            content:
+              "The product's qrcode has been generated : " +
+              response.data.qrcode,
           };
-
+          this.qrcode = response.data.qrcode;
         })
         .catch((error) => {
           this.success = false;
-          this.errors = this.$refs.errorManager.friendlyMessage(error)
+          this.errors = this.$refs.errorManager.friendlyMessage(error);
         });
+    },
+    showQrModal() {
+      this.OpenModal = !this.OpenModal;
     },
   },
 };
