@@ -1,5 +1,8 @@
 <template>
   <div class="w-3/4">
+    <KeypairAuth ref="keypairAuth"/>
+
+    <p class="mb-4 text-xl">Formulary</p>
     <ModalShowQrcode :isOpen="OpenModal" :qrcode="qrcode" />
     <div class="mb-4">
       <label class="block mb-2 text-sm font-bold text-gray-700" for="product">
@@ -41,6 +44,7 @@ import ErrorDisplayer from "../ErrorDisplayer.vue";
 import Message from "../Message.vue";
 import ErrorManager from "../errorManager.vue";
 import ModalShowQrcode from "./ModalShowQrcode.vue";
+import KeypairAuth from "../Auth/KeypairAuth.vue";
 export default {
   data() {
     return {
@@ -57,14 +61,17 @@ export default {
     Message,
     ErrorManager,
     ModalShowQrcode,
+    KeypairAuth
   },
   methods: {
     async generate() {
+      const keypair = await this.$refs.keypairAuth.getKeypair()
       await this.axios({
         method: "post",
         url: config.api.path + "products/qrcode/generate",
         data: {
           id: this.productId,
+          keypair: keypair,
         },
       })
         .then((response) => {
