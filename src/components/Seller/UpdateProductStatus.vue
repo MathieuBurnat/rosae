@@ -1,5 +1,8 @@
 <template>
   <div class="w-3/4">
+    <KeypairAuth ref="keypairAuth" />
+
+    <p class="mb-4 text-xl">Formulary</p>
     <div class="mb-4">
       <label class="block mb-2 text-sm font-bold text-gray-700" for="productId">
         product
@@ -14,10 +17,7 @@
     </div>
 
     <div class="mb-4">
-      <label
-        class="block mb-2 text-sm font-bold text-gray-700"
-        for="status"
-      >
+      <label class="block mb-2 text-sm font-bold text-gray-700" for="status">
         What's the type of the commercial offer ?
       </label>
 
@@ -26,15 +26,9 @@
         v-model="status"
       >
         <option disabled selected>Event type</option>
-        <option value="READY_TO_USE">
-          Ready to use 🚀
-        </option> 
-        <option value="UNDER_REPAIR">
-          Under repair 🛠️
-        </option>
-        <option value="OUT">
-          Out 💀
-        </option>
+        <option value="READY_TO_USE">Ready to use 🚀</option>
+        <option value="UNDER_REPAIR">Under repair 🛠️</option>
+        <option value="OUT">Out 💀</option>
       </select>
     </div>
   </div>
@@ -59,6 +53,7 @@ import config from "../../config.js";
 import ErrorDisplayer from "../ErrorDisplayer.vue";
 import Message from "../Message.vue";
 import ErrorManager from "../errorManager.vue";
+import KeypairAuth from "../Auth/KeypairAuth.vue";
 
 export default {
   data() {
@@ -74,17 +69,18 @@ export default {
     ErrorDisplayer,
     Message,
     ErrorManager,
+    KeypairAuth,
   },
   methods: {
     async save() {
-      console.log(this.date);
-
+      const keypair = await this.$refs.keypairAuth.getKeypair();
       await this.axios({
         method: "post",
         url: config.api.path + "products/status/update/",
         data: {
           id: this.productId,
           status: this.status,
+          keypair: keypair,
         },
       })
         .then((response) => {
