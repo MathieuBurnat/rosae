@@ -1,5 +1,8 @@
 <template>
   <div class="w-3/4">
+    <KeypairAuth ref="keypairAuth" />
+
+    <p class="mb-4 text-xl">Formulary</p>
     <div class="mb-4">
       <div class="mb-4">
         <label class="block mb-2 text-sm font-bold text-gray-700" for="name">
@@ -36,10 +39,7 @@
     </div>
 
     <div class="mb-4">
-      <label
-        class="block mb-2 text-sm font-bold text-gray-700"
-        for="date"
-      >
+      <label class="block mb-2 text-sm font-bold text-gray-700" for="date">
         When the warranty expires ?
       </label>
       <Datepicker v-model="date"></Datepicker>
@@ -80,6 +80,7 @@ import Message from "../Message.vue";
 import ErrorManager from "../errorManager.vue";
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
+import KeypairAuth from "../Auth/KeypairAuth.vue";
 
 export default {
   data() {
@@ -90,19 +91,19 @@ export default {
       name: "",
       published: true,
       price: 15,
-      date: null
+      date: null,
     };
   },
   components: {
     ErrorDisplayer,
     Message,
     ErrorManager,
-    Datepicker 
+    Datepicker,
+    KeypairAuth,
   },
   methods: {
     async save() {
-      console.log(this.date);
-      
+      const keypair = await this.$refs.keypairAuth.getKeypair();
       await this.axios({
         method: "post",
         url: config.api.path + "products/create",
@@ -111,13 +112,15 @@ export default {
           published: this.published === "true",
           warrantyExpiresOn: this.date,
           price: this.price,
+          keypair: keypair,
         },
       })
         .then((response) => {
           this.success = true;
           this.message = {
             type: "alert-success",
-            content: "The product has been created. Product ID: " + response.data.id,
+            content:
+              "The product has been created. Product ID: " + response.data.id,
           };
         })
         .catch((error) => {
