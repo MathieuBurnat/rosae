@@ -2,9 +2,6 @@
   <div class="w-3/4">
     <div class="mb-4">
       <div class="mb-4">
-        <label class="block mb-2 text-sm font-bold text-gray-700" for="qrcode">
-          qrcode
-        </label>
         <div>
           <div class="mt-2 mb-8 tabs">
             <btn
@@ -22,20 +19,20 @@
           </div>
           <div>
             <div v-if="showScanner">
-              <div class="flex w-full">
+              <div class="flex flex-col w-2/4">
                 <div
-                  class="grid flex-grow w-2/4 h-20 card bg-base-200 rounded-box place-items-center"
+                  class="grid h-20 border-2 border-dashed card bg-base-150 border-base-300 rounded-box place-items-center"
                 >
                   <QrDropzone
                     class="w-full h-full text-center"
                     @decode="onDecode"
                   >
-                    <p class="mt-6">Drop image here.</p>
+                    <p class="mt-6">Drop QR Code here.</p>
                   </QrDropzone>
                 </div>
                 <div class="divider divider-horizontal" />
                 <div
-                  class="grid flex-grow w-2/4 h-20 card bg-base-200 rounded-box place-items-center"
+                  class="grid h-20 mt-4 card rounded-box"
                 >
                   <QrCapture @decode="onDecode" class="mb"></QrCapture>
                 </div>
@@ -43,6 +40,13 @@
               <div class="result" v-if="qrcode">Value : {{ qrcode }}</div>
             </div>
             <div v-if="showInput">
+              <label
+                class="block mb-2 text-sm font-bold text-gray-700"
+                for="qrcode"
+              >
+                qrcode
+              </label>
+
               <input
                 class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="qrcode"
@@ -97,7 +101,7 @@ export default {
       success: "",
       qrcode: "",
       ownerId: "",
-      showScanner: false,
+      showScanner: true,
       showInput: false,
     };
   },
