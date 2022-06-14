@@ -17,6 +17,22 @@
         />
       </div>
 
+      <div class="mb-4">
+        <label class="block mb-2 text-sm font-bold text-gray-700" for="status">
+          Choose a product type
+        </label>
+
+        <select
+          class="w-full border-base-200 select select-bordered"
+          v-model="productType"
+        >
+          <option disabled selected>Product type</option>
+          <template v-for="pt in productTypes" :key="pt.id">
+            <option :value="pt.id">{{ pt.slug }}</option>
+          </template>
+        </select>
+      </div>
+
       <label class="block mb-2 text-sm font-bold text-gray-700" for="published">
         Published the product ?
       </label>
@@ -89,6 +105,8 @@ export default {
       errors: "",
       message: "",
       name: "",
+      productType: "Product type",
+      productTypes: [],
       published: true,
       price: 15,
       date: null,
@@ -101,8 +119,23 @@ export default {
     Datepicker,
     KeypairAuth,
   },
+  async created() {
+    // get product types
+    await this.axios({
+      method: "get",
+      url: config.api.path + "product-types",
+    })
+      .then((response) => {
+        this.productTypes = response.data;
+      })
+      .catch((error) => {
+        this.success = false;
+        this.errors = this.$refs.errorManager.friendlyMessage(error);
+      });
+  },
   methods: {
     async save() {
+      console.log(this.productType);
       const keypair = await this.$refs.keypairAuth.getKeypair();
       await this.axios({
         method: "post",
@@ -113,6 +146,7 @@ export default {
           warrantyExpiresOn: this.date,
           price: this.price,
           keypair: keypair,
+          productTypeId: this.productType,
         },
       })
         .then((response) => {
