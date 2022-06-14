@@ -65,15 +65,21 @@
 </template>
 
 <script>
+import { store } from './session.js'
+
 export default {
   data() {
     return {
       publicKey: "",
       privateKey: "",
+      store
     };
   },
   methods: {
     async getKeypair() {
+      store.increment();
+      console.log(store.count);
+
       const keypair = {
         publicKey: this.publicKey,
         privateKey: this.privateKey,
