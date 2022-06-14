@@ -18,7 +18,7 @@
 
     <div class="mb-4">
       <label class="block mb-2 text-sm font-bold text-gray-700" for="status">
-        What's the type of the commercial offer ?
+        What's the status type of the product ?
       </label>
 
       <select
