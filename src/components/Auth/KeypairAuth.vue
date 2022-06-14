@@ -70,7 +70,7 @@
         v-model="privateKey"
       />
     </div>
-    <button class="btn btn-xs btn-primary" @click="saveKeypair">
+    <button class="btn btn-xs btn-outline btn-secondary" @click="saveKeypair">
       I want to save this key pair temporarily
     </button>
   </div>
