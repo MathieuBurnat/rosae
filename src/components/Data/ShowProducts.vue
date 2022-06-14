@@ -1,6 +1,7 @@
 <template>
   <div v-if="products" class="w-3/4">
     <ModalProductDetails :isOpen="OpenModal" :product="selectedProduct" />
+    <input v-model="searchString" placeholder="search" class="mb-1" />
 
     <div v-if="products.length > 0" class="overflow-x-auto">
       <table class="table w-full">
@@ -13,7 +14,7 @@
           </tr>
         </thead>
         <tbody
-          v-for="product in products"
+          v-for="product in filteredProducts"
           :key="product.id"
           v-on:click="showProductDetails(product)"
         >
@@ -56,7 +57,11 @@
               d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
             />
           </svg>
-          <span>There's no product, you can create one into <a href="#/provider" class="link link-primary">the provider page</a>.</span>
+          <span
+            >There's no product, you can create one into
+            <a href="#/provider" class="link link-primary">the provider page</a
+            >.</span
+          >
         </div>
       </div>
     </div>
@@ -84,6 +89,7 @@ export default {
       success: "",
       message: "",
       products: "",
+      searchString: "",
       selectedProduct: "",
       OpenModal: false,
     };
@@ -95,6 +101,20 @@ export default {
     Loadingbar,
     ModalProductDetails,
     FriendlyStatus,
+  },
+  computed: {
+    filteredProducts() {
+      // Filter products by id
+      if (this.searchString.length > 0) {
+        return this.products.filter((product) => {
+          return product.id
+            .toLowerCase()
+            .includes(this.searchString.toLowerCase());
+        });
+      } else {
+        return this.products;
+      }
+    },
   },
   async created() {
     await this.axios({
