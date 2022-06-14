@@ -65,28 +65,37 @@
 </template>
 
 <script>
-import { store } from './session.js'
+import { store } from "./session.js";
 
 export default {
   data() {
     return {
       publicKey: "",
       privateKey: "",
-      store
+      store,
     };
   },
   methods: {
     async getKeypair() {
-      store.increment();
-      console.log(store.count);
-
+      // If keypair is temporarily stored in the store, we use it
+      if (store.keypair) {
+        return store.keypair;
+      } else {
+        // Else we get the keypair from this component
+        const keypair = {
+          publicKey: this.publicKey,
+          privateKey: this.privateKey,
+        };
+        return keypair;
+      }
+    },
+    // Save keypair temporarily
+    async saveKeypair() {
       const keypair = {
         publicKey: this.publicKey,
         privateKey: this.privateKey,
       };
-      console.log("Keypair");
-      console.log(keypair);
-      return keypair;
+      store.setKeypair(keypair);
     },
   },
 };

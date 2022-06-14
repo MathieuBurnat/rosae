@@ -2,9 +2,10 @@
 import { reactive } from 'vue'
 
 export const store = reactive({
-    
-    count: 0,
-    increment() {
-        this.count++
-    }
+    keypair: null,
+    setKeypair(keypair) {
+        console.log("temp save");
+        this.keypair = keypair
+        console.log(this.keypair);
+    },
 })
