@@ -117,6 +117,11 @@ export default {
     },
     // Reset keypair
     async resetKeypair() {
+      // Userfriendly action
+      this.publicKey = store.keypair.publicKey;
+      this.privateKey = store.keypair.privateKey;
+
+      // Reset temporary keypair
       store.resetKeypair();
     },
   },
