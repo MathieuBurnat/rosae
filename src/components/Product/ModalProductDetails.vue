@@ -54,11 +54,21 @@
                 >
               </div>
             </li>
+            <li>
+              <div>
+                <span class="w-full font-semibold">Certified by</span>
+                <span
+                  class="top-0 w-full text-sm text-right opacity-50 align-right"
+                >
+                  <CertifiedEntity :product="product" />
+                </span>
+              </div>
+            </li>
           </ul>
         </div>
 
         <div class="p-4 m-8 bg-zinc-50 rounded-2xl">
-          <TrackerActivities :product="product"/>
+          <TrackerActivities :product="product" />
         </div>
 
         <div class="modal-action">
@@ -74,12 +84,14 @@
 import FriendlyStatus from "./FriendlyStatus.vue";
 import datePretty from "../../assets/dateFormater.js";
 import TrackerActivities from "./TrackerActivities/TrackerActivities.vue";
+import CertifiedEntity from "../CertifiedEntity/CertifiedEntity.vue";
 
 export default {
   props: ["isOpen", "product"],
   components: {
     FriendlyStatus,
-    TrackerActivities
+    TrackerActivities,
+    CertifiedEntity,
   },
   data() {
     return {
